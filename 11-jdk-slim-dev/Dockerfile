@@ -9,6 +9,11 @@ RUN \
   && apt-get install -y sbt \
   && rm -rf /var/lib/apt/lists/*
   
+RUN \
+  curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+  && apt-get install -y nodejs git \
+  && rm -rf /var/lib/apt/lists/*
+
 ENV PROJECT_PATH /projects
 
 WORKDIR $PROJECT_PATH
