@@ -4,7 +4,7 @@ ENV SBT_VERSION 1.2.8
 
 RUN \
   apk update && \
-  apk add --no-cache bash && \
+  apk add --no-cache bash git nodejs npm && \
   apk add --no-cache --virtual=build-dependencies curl gzip && \
   curl -fsSL https://github.com/sbt/sbt/releases/download/v$SBT_VERSION/sbt-$SBT_VERSION.tgz | tar -xzf - -C /usr/local && \
   ln -s /usr/local/sbt/bin/* /usr/local/bin/ && \
