@@ -14,8 +14,19 @@ RUN \
   && apt-get install -y nodejs git \
   && rm -rf /var/lib/apt/lists/*
 
-ENV PROJECT_PATH /projects
+ARG USER=developer
+ARG GROUP=developer
+ARG DIRPATH=/home/$USER/projects
+ARG DIRNAME=project
 
-WORKDIR $PROJECT_PATH
+RUN \
+  groupadd $GROUP \
+  && useradd -m -g $GROUP $USER
+
+USER $USER
+
+RUN mkdir -p $DIRPATH/$DIRNAME
+
+WORKDIR $DIRPATH/$DIRNAME
 
 CMD ["bash"]
