@@ -19,9 +19,6 @@ ARG group=developer
 ARG home=/home/$user
 ARG project=projects/project
 
-ENV HOME=$home
-ENV PROJECT=$project
-
 RUN \
   groupadd $group \
   && useradd -m -g $group $user
