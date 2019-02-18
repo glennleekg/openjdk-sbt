@@ -9,19 +9,22 @@ RUN \
   && apt-get install -y sbt \
   && rm -rf /var/lib/apt/lists/*
   
-ARG USER=developer
-ARG GROUP=developer
-ARG DIRPATH=/home/$USER/projects
-ARG DIRNAME=project
+ARG user=developer
+ARG group=developer
+ARG home=/home/$user
+ARG project=projects/project
+
+ENV HOME=$home
+ENV PROJECT=$project
 
 RUN \
-  groupadd $GROUP \
-  && useradd -m -g $GROUP $USER
+  groupadd $group \
+  && useradd -m -g $group $user
 
-USER $USER
+USER $user
 
-RUN mkdir -p $DIRPATH/$DIRNAME
+RUN mkdir -p $home/$project
 
-WORKDIR $DIRPATH/$DIRNAME
+WORKDIR $home/$project
 
 CMD ["bash"]
